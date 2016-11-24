@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EircodeController {
 	
-	@RequestMapping("/pcw/{key}/address/ie/{search}")
+	@RequestMapping("/cache/{key}/address/ie/{search}")
     public String irishLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
@@ -15,7 +15,7 @@ public class EircodeController {
         return "irishLookup key " + key + " search " + search;
     }
 	
-	@RequestMapping("/pcw/{key}/address/uk/{search}")
+	@RequestMapping("/cache/{key}/address/uk/{search}")
     public String ukLookup(@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
