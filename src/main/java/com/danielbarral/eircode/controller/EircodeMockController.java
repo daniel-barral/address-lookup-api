@@ -31,6 +31,18 @@ public class EircodeMockController {
 		
 		addressList.add(address);
 		
+		Address address2 = new Address();
+		address2.setAddressline1("Mock002 Addressline1");
+		address2.setAddressline2("Mock002 Addressline2");
+		address2.setSummaryline("Mock002 Summaryline");
+		address2.setOrganisation("Mock002 Organisation");
+		address2.setStreet("Mock002 Street");
+		address2.setPosttown("Mock002 Posttown");
+		address2.setCounty("Mock002 County");
+		address2.setPostcode("Mock002 Postcode");
+		
+		addressList.add(address2);
+		
         return addressList;
     }
 
