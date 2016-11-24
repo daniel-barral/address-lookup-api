@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app>
+	<head>
+		<title>Eircode API test client</title>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    	<script src="/js/EircodeTestClient.js"></script>
+    	
+    	<style>
+		table, th, td {
+		    border: 1px solid black;
+		}
+		</style>
+	</head>
+
+	<body>
+		<div ng-controller="EircodeTestClient">
+			
+			<h1>Eircode test client</h1>
+			
+			<h2>Results:</h2>
+		
+			<table ng-repeat="address in addresses">
+				<tr>
+					<td>addressline1</td>
+					<td>{{address.addressline1}}</td>
+				</tr>
+				<tr>
+					<td>organisation</td>
+					<td>{{address.organisation}}</td>
+				</tr>
+				<tr>
+					<td>street</td>
+					<td>{{address.street}}</td>
+				</tr>
+				<tr>
+					<td>postcode</td>
+					<td>{{address.postcode}}</td>
+				</tr>
+			</table>
+			
+			<h2>JSON response:</h2>
+			
+			<p>
+			{{addresses}}
+			</p>
+			
+		</div>
+	</body>
+</html>
