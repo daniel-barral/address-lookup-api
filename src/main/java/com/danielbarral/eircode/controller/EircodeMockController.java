@@ -20,14 +20,14 @@ public class EircodeMockController {
 		List<Address> addressList = new ArrayList<Address>();
 		
 		Address address = new Address();
-		address.setAddressline1("Department of Communications, Energy and Natural Resources");
-		address.setAddressline2("Adelaide Road");
-		address.setSummaryline("Department of Communications, Energy and Natural Resources, Adelaide Road, Dublin 2, D02 X285");
-		address.setOrganisation("Department of Communications, Energy and Natural Resources");
-		address.setStreet("Adelaide Road");
-		address.setPosttown("Dublin 2");
-		address.setCounty("Dublin");
-		address.setPostcode("D02 X285");
+		address.setAddressline1("Mock Addressline1");
+		address.setAddressline2("Mock Addressline2");
+		address.setSummaryline("Mock Summaryline");
+		address.setOrganisation("Mock Organisation");
+		address.setStreet("Mock Street");
+		address.setPosttown("Mock Posttown");
+		address.setCounty("Mock County");
+		address.setPostcode("Mock Postcode");
 		
 		addressList.add(address);
 		
