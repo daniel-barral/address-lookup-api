@@ -7,6 +7,7 @@
 		var vm = this;
 		
 		vm.apiKey = 'PCW45-12345-12345-1234X';
+		vm.search = '';
 		
 		vm.lookupTypes = [
 	          {name:'address'},
@@ -30,7 +31,7 @@
 		
 		function lookup() {
 			
-			var url = '/cache/' + vm.apiKey + '/' + vm.lookupType.name + '/' + vm.country.code + '/search';
+			var url = '/cache/' + vm.apiKey + '/' + vm.lookupType.name + '/' + vm.country.code + '/' + vm.search;
 			
 			$http({
 				  method: 'GET',
