@@ -45,6 +45,64 @@
 			{{addresses}}
 			</p>
 			
+			
+			
+			<h2>Results:</h2>
+		
+			<table ng-repeat="addressGeo in addressGeoList" style="margin-top: 10px;">
+				<tr>
+					<td>addressline1</td>
+					<td>{{addressGeo.addressline1}}</td>
+				</tr>
+				<tr>
+					<td>organisation</td>
+					<td>{{addressGeo.organisation}}</td>
+				</tr>
+				<tr>
+					<td>street</td>
+					<td>{{addressGeo.street}}</td>
+				</tr>
+				<tr>
+					<td>postcode</td>
+					<td>{{addressGeo.postcode}}</td>
+				</tr>
+				<tr>
+					<td>latitude</td>
+					<td>{{addressGeo.latitude}}</td>
+				</tr>
+				<tr>
+					<td>longitude</td>
+					<td>{{addressGeo.longitude}}</td>
+				</tr>
+			</table>
+			
+			<h2>JSON response:</h2>
+			
+			<p>
+			{{addressGeoList}}
+			</p>
+			
+			
+			
+			<h2>Results:</h2>
+		
+			<table ng-repeat="coordinate in coordinateList" style="margin-top: 10px;">
+				<tr>
+					<td>latitude</td>
+					<td>{{coordinate.latitude}}</td>
+				</tr>
+				<tr>
+					<td>longitude</td>
+					<td>{{coordinate.longitude}}</td>
+				</tr>
+			</table>
+			
+			<h2>JSON response:</h2>
+			
+			<p>
+			{{coordinateList}}
+			</p>
+			
 		</div>
 	</body>
 </html>
