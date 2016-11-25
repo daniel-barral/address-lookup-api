@@ -15,8 +15,8 @@ public class EircodeService {
 	
     public List<Address> irishLookup(String key, String search) {
 		
-		//String url = "http://ws.postcoder.com/pcw/PCW45-12345-12345-1234X/address/ie/D02X285?lines=3&format=json";
-		String url = "http://localhost:8080/pcw/key/address/ie/search";
+		String url = "http://ws.postcoder.com/pcw/PCW45-12345-12345-1234X/address/ie/D02X285?lines=3&format=json";
+		//String url = "http://localhost:8080/pcw/key/address/ie/search";
 		
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<List<Address>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Address>>(){});
