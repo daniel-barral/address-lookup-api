@@ -19,90 +19,23 @@
 			
 			<h1>Eircode test client</h1>
 			
+			<select ng-model="vm.lookupType" ng-options="lookupType.name for lookupType in vm.lookupTypes"></select>
+			<button type="button" ng-click="vm.lookup()">Search</button>
+			
 			<h2>Results:</h2>
-		
-			<table ng-repeat="address in vm.addresses" style="margin-top: 10px;">
-				<tr>
-					<td>addressline1</td>
-					<td>{{address.addressline1}}</td>
-				</tr>
-				<tr>
-					<td>organisation</td>
-					<td>{{address.organisation}}</td>
-				</tr>
-				<tr>
-					<td>street</td>
-					<td>{{address.street}}</td>
-				</tr>
-				<tr>
-					<td>postcode</td>
-					<td>{{address.postcode}}</td>
+			
+			<table ng-repeat="result in vm.resultList" style="margin-top: 10px;">
+				<tr ng-repeat="(key, value) in result">
+					<td>{{key}}</td><td>{{value}}</td>
 				</tr>
 			</table>
 			
 			<h2>JSON response:</h2>
 			
 			<p>
-			{{vm.addresses}}
+			{{vm.resultList}}
 			</p>
 			
-			
-			
-			<h2>Results:</h2>
-		
-			<table ng-repeat="addressGeo in vm.addressGeoList" style="margin-top: 10px;">
-				<tr>
-					<td>addressline1</td>
-					<td>{{addressGeo.addressline1}}</td>
-				</tr>
-				<tr>
-					<td>organisation</td>
-					<td>{{addressGeo.organisation}}</td>
-				</tr>
-				<tr>
-					<td>street</td>
-					<td>{{addressGeo.street}}</td>
-				</tr>
-				<tr>
-					<td>postcode</td>
-					<td>{{addressGeo.postcode}}</td>
-				</tr>
-				<tr>
-					<td>latitude</td>
-					<td>{{addressGeo.latitude}}</td>
-				</tr>
-				<tr>
-					<td>longitude</td>
-					<td>{{addressGeo.longitude}}</td>
-				</tr>
-			</table>
-			
-			<h2>JSON response:</h2>
-			
-			<p>
-			{{vm.addressGeoList}}
-			</p>
-			
-			
-			
-			<h2>Results:</h2>
-		
-			<table ng-repeat="coordinate in vm.coordinateList" style="margin-top: 10px;">
-				<tr>
-					<td>latitude</td>
-					<td>{{coordinate.latitude}}</td>
-				</tr>
-				<tr>
-					<td>longitude</td>
-					<td>{{coordinate.longitude}}</td>
-				</tr>
-			</table>
-			
-			<h2>JSON response:</h2>
-			
-			<p>
-			{{vm.coordinateList}}
-			</p>
 			
 		</div>
 	</body>
