@@ -1,16 +1,16 @@
-package com.danielbarral.eircode.service;
+package com.danielbarral.addresslookup.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.danielbarral.eircode.model.Address;
+import com.danielbarral.addresslookup.model.Address;
 
 @Service
-public class EircodeMockService implements EircodeServiceInterface {
+public class EircodeMockService implements AddressLookupServiceInterface {
 	
-    public List<Address> irishLookup(String key, String search) {
+    public List<Address> addressLookup(String key, String search) {
 		
     	List<Address> addressList = new ArrayList<Address>();
 		

@@ -1,4 +1,4 @@
-package com.danielbarral.eircode.model;
+package com.danielbarral.addresslookup.model;
 
 public class Address {
 	

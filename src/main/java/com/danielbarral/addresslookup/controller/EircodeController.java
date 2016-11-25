@@ -1,4 +1,4 @@
-package com.danielbarral.eircode.controller;
+package com.danielbarral.addresslookup.controller;
 
 import java.util.List;
 
@@ -8,21 +8,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.danielbarral.eircode.model.Address;
-import com.danielbarral.eircode.service.EircodeServiceInterface;
+import com.danielbarral.addresslookup.model.Address;
+import com.danielbarral.addresslookup.service.AddressLookupServiceInterface;
 
 @RestController
 public class EircodeController {
 	
 	@Inject
-	private EircodeServiceInterface eircodeService;
+	private AddressLookupServiceInterface eircodeService;
 	
 	@RequestMapping("/cache/{key}/address/ie/{search}")
     public List<Address> irishLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
-		List<Address> addressList = eircodeService.irishLookup(key, search);
+		List<Address> addressList = eircodeService.addressLookup(key, search);
 		
         return addressList;
     }

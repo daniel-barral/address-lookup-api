@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.danielbarral</groupId>
-    <artifactId>eircode</artifactId>
+    <artifactId>addresslookup</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
-    <name>Eircode API</name>
-    <description>Eircode API with Spring Boot and Docker</description>
+    <name>Address Lookup API</name>
+    <description>Address Lookup API with Spring Boot and Docker</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

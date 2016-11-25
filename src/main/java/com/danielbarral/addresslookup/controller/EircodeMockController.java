@@ -1,4 +1,4 @@
-package com.danielbarral.eircode.controller;
+package com.danielbarral.addresslookup.controller;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.danielbarral.eircode.model.Address;
-import com.danielbarral.eircode.service.EircodeMockService;
+import com.danielbarral.addresslookup.model.Address;
+import com.danielbarral.addresslookup.service.EircodeMockService;
 
 @RestController
 public class EircodeMockController {
@@ -22,7 +22,7 @@ public class EircodeMockController {
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
-		List<Address> addressList = eircodeMockService.irishLookup(key, search);
+		List<Address> addressList = eircodeMockService.addressLookup(key, search);
 		
         return addressList;
     }

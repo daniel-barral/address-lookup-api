@@ -1,12 +1,12 @@
-package com.danielbarral.eircode;
+package com.danielbarral.addresslookup;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.danielbarral.eircode.service.EircodeMockService;
-import com.danielbarral.eircode.service.EircodeService;
-import com.danielbarral.eircode.service.EircodeServiceInterface;
+import com.danielbarral.addresslookup.service.EircodeMockService;
+import com.danielbarral.addresslookup.service.EircodeService;
+import com.danielbarral.addresslookup.service.AddressLookupServiceInterface;
 
 @Configuration
 public class BeanConfig {
@@ -15,7 +15,7 @@ public class BeanConfig {
 	private Boolean mockEircodeApi;
 
 	@Bean
-	public EircodeServiceInterface eircodeService() {
+	public AddressLookupServiceInterface eircodeService() {
 		if (mockEircodeApi) {
 			return new EircodeMockService();
 		} else {

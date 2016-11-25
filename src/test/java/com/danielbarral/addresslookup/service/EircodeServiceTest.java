@@ -1,4 +1,4 @@
-package com.danielbarral.eircode.service;
+package com.danielbarral.addresslookup.service;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.danielbarral.eircode.model.Address;
+import com.danielbarral.addresslookup.model.Address;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,7 +25,7 @@ public class EircodeServiceTest {
 	@Test
     public void testExampleResult() {
 		
-    	List<Address> addresses = eircodeService.irishLookup("key", "D02X285");
+    	List<Address> addresses = eircodeService.addressLookup("key", "D02X285");
     	
     	assertEquals(1, addresses.size());
     	
