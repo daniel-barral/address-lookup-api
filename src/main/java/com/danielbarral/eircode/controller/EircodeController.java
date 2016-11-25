@@ -4,39 +4,25 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.danielbarral.eircode.model.Address;
-import com.danielbarral.eircode.service.EircodeMockService;
-import com.danielbarral.eircode.service.EircodeService;
+import com.danielbarral.eircode.service.EircodeServiceInterface;
 
 @RestController
 public class EircodeController {
 	
 	@Inject
-	EircodeService eircodeService;
-	
-	@Inject
-	EircodeMockService eircodeMockService;
-	
-	@Value("${mockEircodeApi}")
-	private Boolean mockEircodeApi;
+	private EircodeServiceInterface eircodeService;
 	
 	@RequestMapping("/cache/{key}/address/ie/{search}")
     public List<Address> irishLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
-		List<Address> addressList = null;
-		
-		if (mockEircodeApi) {
-			addressList = eircodeMockService.irishLookup(key, search);
-		} else {
-			addressList = eircodeService.irishLookup(key, search);
-		}
+		List<Address> addressList = eircodeService.irishLookup(key, search);
 		
         return addressList;
     }

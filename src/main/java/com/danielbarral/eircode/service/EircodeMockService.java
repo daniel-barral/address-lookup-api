@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.danielbarral.eircode.model.Address;
 
 @Service
-public class EircodeMockService {
+public class EircodeMockService implements EircodeServiceInterface {
 	
     public List<Address> irishLookup(String key, String search) {
 		

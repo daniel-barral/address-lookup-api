@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import com.danielbarral.eircode.model.Address;
 
 @Service
-public class EircodeService {
+public class EircodeService implements EircodeServiceInterface {
 	
     public List<Address> irishLookup(String key, String search) {
 		
