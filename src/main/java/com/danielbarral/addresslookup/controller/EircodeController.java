@@ -24,32 +24,14 @@ public class EircodeController {
 	@Inject
 	private EircodeService eircodeService;
 	
-	@RequestMapping("/cache/{key}/address/ie/{search}")
+	@RequestMapping("/cache/{key}/{lookupType}/{countryCode}/{search}")
     public String irishAddressLookup(
     		@PathVariable(value = "key") String key,
+    		@PathVariable(value = "lookupType") String lookupType,
+    		@PathVariable(value = "countryCode") String countryCode,
     		@PathVariable(value = "search") String search) {
 		
-		String json = eircodeService.addressLookup(getApiBaseUrl(), key, "/address/ie/" + search);
-		
-        return json;
-    }
-	
-	@RequestMapping("/cache/{key}/addressgeo/ie/{search}")
-    public String irishAddressAndCoordinateLookup(
-    		@PathVariable(value = "key") String key,
-    		@PathVariable(value = "search") String search) {
-		
-		String json = eircodeService.addressLookup(getApiBaseUrl(), key, "/addressgeo/ie/" + search);
-		
-        return json;
-    }
-	
-	@RequestMapping("/cache/{key}/position/ie/{search}")
-    public String irishCoordinateLookup(
-    		@PathVariable(value = "key") String key,
-    		@PathVariable(value = "search") String search) {
-		
-		String json = eircodeService.addressLookup(getApiBaseUrl(), key, "/position/ie/" + search);
+		String json = eircodeService.addressLookup(getApiBaseUrl(), key, "/" + lookupType + "/" + countryCode + "/" + search);
 		
         return json;
     }
