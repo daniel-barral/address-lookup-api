@@ -1,53 +1,68 @@
-function EircodeTestClient($scope, $http) {
+(function(){
 	
-	$http({
-		  method: 'GET',
-		  url: '/cache/key/address/ie/search',
-		  params: {
-			  //api: controller.api,
-			  //queryString: controller.queryString
-		  }
-	}).then(onSuccess, onError);
+	angular.module('addressLookup').controller("EircodeTestClient", EircodeTestClient);
 	
-	function onSuccess(response) {
-		$scope.addresses = response.data;
+	function EircodeTestClient($scope, $http) {
+		
+		loadAdresses();
+		loadAdressesGeo();
+		loadCoordinates();
+		
+		function loadAdresses() {
+			$http({
+				  method: 'GET',
+				  url: '/cache/key/address/ie/search',
+				  params: {
+					  //api: controller.api,
+					  //queryString: controller.queryString
+				  }
+			}).then(onSuccess, onError);
+			
+			function onSuccess(response) {
+				$scope.addresses = response.data;
+			}
+			function onError(response) {
+				alert('Error: ' + response.status + " " + response.statusText);
+			}
+		}
+		
+		function loadAdressesGeo() {
+			$http({
+				  method: 'GET',
+				  url: '/cache/key/addressgeo/ie/search',
+				  params: {
+					  //api: controller.api,
+					  //queryString: controller.queryString
+				  }
+			}).then(onSuccess, onError);
+			
+			function onSuccess(response) {
+				$scope.addressGeoList = response.data;
+			}
+			function onError(response) {
+				alert('Error: ' + response.status + " " + response.statusText);
+			}
+		}
+		
+		function loadCoordinates() {
+			$http({
+				  method: 'GET',
+				  url: '/cache/key/position/ie/search',
+				  params: {
+					  //api: controller.api,
+					  //queryString: controller.queryString
+				  }
+			}).then(onSuccess, onError);
+			
+			function onSuccess(response) {
+				$scope.coordinateList = response.data;
+			}
+			function onError(response) {
+				alert('Error: ' + response.status + " " + response.statusText);
+			}
+		}
+		
 	}
-	function onError(response) {
-		alert('Error: ' + response.status + " " + response.statusText);
-	}
-	
-	
-	$http({
-		  method: 'GET',
-		  url: '/cache/key/addressgeo/ie/search',
-		  params: {
-			  //api: controller.api,
-			  //queryString: controller.queryString
-		  }
-	}).then(onSuccess2, onError2);
-	
-	function onSuccess2(response) {
-		$scope.addressGeoList = response.data;
-	}
-	function onError2(response) {
-		alert('Error: ' + response.status + " " + response.statusText);
-	}
-	
-	
-	$http({
-		  method: 'GET',
-		  url: '/cache/key/position/ie/search',
-		  params: {
-			  //api: controller.api,
-			  //queryString: controller.queryString
-		  }
-	}).then(onSuccess3, onError3);
-	
-	function onSuccess3(response) {
-		$scope.coordinateList = response.data;
-	}
-	function onError3(response) {
-		alert('Error: ' + response.status + " " + response.statusText);
-	}
-	
-}
+
+
+})();
