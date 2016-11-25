@@ -18,38 +18,14 @@
 		
 		vm.lookup = lookup;
 		
+		
 		function lookup() {
-			if (vm.lookupType.name=='address') {
-				loadAdresses();
-			} else if (vm.lookupType.name=='addressgeo') {
-				loadAdressesGeo();
-			} else if (vm.lookupType.name=='position') {
-				loadCoordinates();
-			}
-		}
-		
-		function loadAdresses() {
+			
+			var url = '/cache/key/' + vm.lookupType.name + '/ie/search';
+			
 			$http({
 				  method: 'GET',
-				  url: '/cache/key/address/ie/search',
-				  params: {
-				  }
-			}).then(onSuccess, onError);
-		}
-		
-		function loadAdressesGeo() {
-			$http({
-				  method: 'GET',
-				  url: '/cache/key/addressgeo/ie/search',
-				  params: {
-				  }
-			}).then(onSuccess, onError);
-		}
-		
-		function loadCoordinates() {
-			$http({
-				  method: 'GET',
-				  url: '/cache/key/position/ie/search',
+				  url: url,
 				  params: {
 				  }
 			}).then(onSuccess, onError);
