@@ -4,6 +4,12 @@
 	
 	function EircodeTestClient($scope, $http) {
 		
+		var vm = this;
+		
+		vm.addresses = null;
+		vm.addressGeoList = null;
+		vm.coordinateList = null;
+		
 		loadAdresses();
 		loadAdressesGeo();
 		loadCoordinates();
@@ -19,7 +25,7 @@
 			}).then(onSuccess, onError);
 			
 			function onSuccess(response) {
-				$scope.addresses = response.data;
+				vm.addresses = response.data;
 			}
 			function onError(response) {
 				alert('Error: ' + response.status + " " + response.statusText);
@@ -37,7 +43,7 @@
 			}).then(onSuccess, onError);
 			
 			function onSuccess(response) {
-				$scope.addressGeoList = response.data;
+				vm.addressGeoList = response.data;
 			}
 			function onError(response) {
 				alert('Error: ' + response.status + " " + response.statusText);
@@ -55,7 +61,7 @@
 			}).then(onSuccess, onError);
 			
 			function onSuccess(response) {
-				$scope.coordinateList = response.data;
+				vm.coordinateList = response.data;
 			}
 			function onError(response) {
 				alert('Error: ' + response.status + " " + response.statusText);
