@@ -6,6 +6,8 @@
 		
 		var vm = this;
 		
+		vm.apiKey = 'PCW45-12345-12345-1234X';
+		
 		vm.lookupTypes = [
 	          {name:'address'},
 	          {name:'addressgeo'},
@@ -14,6 +16,13 @@
 		
 		vm.lookupType = vm.lookupTypes[0];
 		
+		vm.countries = [
+	          {code:'ie'},
+	          {code:'uk'}
+	          ];
+		
+		vm.country = vm.countries[0];
+		
 		vm.resultList = null;
 		
 		vm.lookup = lookup;
@@ -21,7 +30,7 @@
 		
 		function lookup() {
 			
-			var url = '/cache/key/' + vm.lookupType.name + '/ie/search';
+			var url = '/cache/' + vm.apiKey + '/' + vm.lookupType.name + '/' + vm.country.code + '/search';
 			
 			$http({
 				  method: 'GET',
