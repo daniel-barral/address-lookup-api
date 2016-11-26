@@ -15,6 +15,8 @@ public class EircodeService {
 
 	@Inject
 	private JedisPool jedisPool;
+	
+	private RestTemplate restTemplate = new RestTemplate();
 
 	public String addressLookup(String baseUrl, String key, String queryString) {
 
@@ -26,8 +28,7 @@ public class EircodeService {
 			if (jsonCache != null) { //cache hit
 				return jsonCache;
 			}
-
-			RestTemplate restTemplate = new RestTemplate();
+			
 			String json = restTemplate.getForObject(url, String.class);
 
 			jedis.set(url, json);
