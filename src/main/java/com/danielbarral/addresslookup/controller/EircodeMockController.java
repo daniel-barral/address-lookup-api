@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.danielbarral.addresslookup.model.Address;
@@ -106,6 +107,42 @@ public class EircodeMockController {
 		coordinateList.add(coordinate2);
         
 		return coordinateList;
+    }
+	
+	@RequestMapping("/mock/{key}/rgeo/ie/{latitude}/{longitude}")
+    public List<Address> reverseGeocode(
+    		@PathVariable(value = "key") String key,
+    		@PathVariable(value = "latitude") String latitude,
+    		@PathVariable(value = "latitude") String longitude,
+    		@RequestParam(value="distance", required=true) String distance) {
+		
+		List<Address> addressList = new ArrayList<Address>();
+		
+		Address address = new Address();
+		address.setAddressline1("Mock Reverse geocode Addressline1");
+		address.setAddressline2("Mock Reverse geocode Addressline2");
+		address.setSummaryline("Mock Reverse geocode Summaryline");
+		address.setOrganisation("Mock Reverse geocode Organisation");
+		address.setStreet("Mock Reverse geocode Street");
+		address.setPosttown("Mock Reverse geocode Posttown");
+		address.setCounty("Mock Reverse geocode County");
+		address.setPostcode("Mock Reverse geocode Postcode");
+		
+		addressList.add(address);
+		
+		Address address2 = new Address();
+		address2.setAddressline1("Mock002 Reverse geocode Addressline1");
+		address2.setAddressline2("Mock002 Reverse geocode Addressline2");
+		address2.setSummaryline("Mock002 Reverse geocode Summaryline");
+		address2.setOrganisation("Mock002 Reverse geocode Organisation");
+		address2.setStreet("Mock002 Reverse geocode Street");
+		address2.setPosttown("Mock002 Reverse geocode Posttown");
+		address2.setCounty("Mock002 Reverse geocode County");
+		address2.setPostcode("Mock002 Reverse geocode Postcode");
+		
+		addressList.add(address2);
+        
+		return addressList;
     }
 
 }

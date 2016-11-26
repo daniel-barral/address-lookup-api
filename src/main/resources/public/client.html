@@ -31,9 +31,21 @@
 				<label>Lookup type:</label>
 				<select ng-model="vm.lookupType" ng-options="lookupType.name for lookupType in vm.lookupTypes"></select>
 			</p>
-			<p>
+			<p ng-show="vm.lookupType.name!='rgeo'">
 				<label>Eircode/Postcode or address fragment:</label>
 				<input type="text" ng-model="vm.search">
+			</p>
+			<p ng-show="vm.lookupType.name=='rgeo'">
+				<label>Latitude:</label>
+				<input type="text" ng-model="vm.latitude">
+			</p>
+			<p ng-show="vm.lookupType.name=='rgeo'">
+				<label>Longitude:</label>
+				<input type="text" ng-model="vm.longitude">
+			</p>
+			<p ng-show="vm.lookupType.name=='rgeo'">
+				<label>Distance:</label>
+				<input type="text" ng-model="vm.distance">
 			</p>
 			
 			<button type="button" ng-click="vm.lookup()">Search</button>

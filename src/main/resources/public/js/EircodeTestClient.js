@@ -12,6 +12,7 @@
 		vm.lookupTypes = [
 	          {name:'address'},
 	          {name:'addressgeo'},
+	          {name:'rgeo'},
 	    	  {name:'position'}
 	          ];
 		
@@ -24,6 +25,10 @@
 		
 		vm.country = vm.countries[0];
 		
+		vm.latitude = null;
+		vm.longitude = null;
+		vm.distance = null;
+		
 		vm.resultList = null;
 		
 		vm.lookup = lookup;
@@ -31,7 +36,7 @@
 		
 		function lookup() {
 			
-			var url = '/cache/' + vm.apiKey + '/' + vm.lookupType.name + '/' + vm.country.code + '/' + vm.search;
+			var url = buildUrl();
 			
 			$http({
 				  method: 'GET',
@@ -46,6 +51,18 @@
 		}
 		function onError(response) {
 			alert('Error: ' + response.status + " " + response.statusText);
+		}
+		
+		function buildUrl() {
+			var url = '/cache/' + vm.apiKey + '/' + vm.lookupType.name + '/' + vm.country.code + '/';
+			
+			if (vm.lookupType.name=='rgeo') {
+				url += vm.latitude + '/' + vm.longitude + '?distance=' + vm.distance;
+			} else {
+				url += vm.search;
+			}
+			
+			return url;
 		}
 		
 	}
