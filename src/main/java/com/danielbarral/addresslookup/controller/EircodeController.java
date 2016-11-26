@@ -2,7 +2,6 @@ package com.danielbarral.addresslookup.controller;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,14 +12,8 @@ import com.danielbarral.addresslookup.service.EircodeService;
 @RestController
 public class EircodeController {
 	
-	@Value("${postcoderApiBaseUrl}")
-	private String postcoderApiBaseUrl;
-	
-	@Value("${mockApiBaseUrl}")
-	private String mockApiBaseUrl;
-	
-	@Value("${mock}")
-	private boolean mock;
+	@Inject
+	private String apiBaseUrl;
 	
 	@Inject
 	private EircodeService eircodeService;
@@ -32,7 +25,7 @@ public class EircodeController {
     		@PathVariable(value = "countryCode") String countryCode,
     		@PathVariable(value = "search") String search) {
 		
-		String json = eircodeService.addressLookup(getApiBaseUrl(), key, "/" + lookupType + "/" + countryCode + "/" + search);
+		String json = eircodeService.addressLookup(apiBaseUrl, key, "/" + lookupType + "/" + countryCode + "/" + search);
 		
         return json;
     }
@@ -44,13 +37,9 @@ public class EircodeController {
     		@PathVariable(value = "longitude") String longitude,
     		@RequestParam(value="distance", required=true) String distance) {
 		
-		String json = eircodeService.addressLookup(getApiBaseUrl(), key, "/rgeo/ie/" + latitude + "/" + longitude + "?distance=" + distance);
+		String json = eircodeService.addressLookup(apiBaseUrl, key, "/rgeo/ie/" + latitude + "/" + longitude + "?distance=" + distance);
 		
         return json;
     }
-	
-	private String getApiBaseUrl() {
-		return mock ? mockApiBaseUrl : postcoderApiBaseUrl;
-	}
 
 }
