@@ -3,6 +3,8 @@ package com.danielbarral.addresslookup.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +17,14 @@ import com.danielbarral.addresslookup.model.Coordinate;
 @RestController
 public class AddressLookupMockController {
 	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@RequestMapping("/mock/{key}/address/ie/{search}")
     public List<Address> irishAddressLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
+		
+		logger.debug("Mock irishAddressLookup");
 		
 		List<Address> addressList = new ArrayList<Address>();
 		
@@ -53,6 +59,8 @@ public class AddressLookupMockController {
     public List<AddressGeo> irishAddressAndCoordinateLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
+		
+		logger.debug("Mock irishAddressAndCoordinateLookup");
 		
 		List<AddressGeo> addressList = new ArrayList<AddressGeo>();
 		
@@ -92,6 +100,8 @@ public class AddressLookupMockController {
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
+		logger.debug("Mock irishCoordinateLookup");
+		
 		List<Coordinate> coordinateList = new ArrayList<Coordinate>();
 		
 		Coordinate coordinate = new Coordinate();
@@ -115,6 +125,8 @@ public class AddressLookupMockController {
     		@PathVariable(value = "latitude") String latitude,
     		@PathVariable(value = "latitude") String longitude,
     		@RequestParam(value="distance", required=true) String distance) {
+		
+		logger.debug("Mock reverseGeocode");
 		
 		List<Address> addressList = new ArrayList<Address>();
 		
@@ -149,6 +161,8 @@ public class AddressLookupMockController {
     public List<Address> ukAddressLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
+		
+		logger.debug("Mock ukAddressLookup");
 		
 		List<Address> addressList = new ArrayList<Address>();
 		
