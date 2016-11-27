@@ -1,8 +1,8 @@
 (function(){
 	
-	angular.module('addressLookup').controller("EircodeTestClient", EircodeTestClient);
+	angular.module('addressLookup').controller("AddressLookupTestClient", AddressLookupTestClient);
 	
-	function EircodeTestClient($scope, $http) {
+	function AddressLookupTestClient($scope, $http) {
 		
 		var vm = this;
 		

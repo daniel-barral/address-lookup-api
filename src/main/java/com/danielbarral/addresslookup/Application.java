@@ -11,7 +11,7 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
-        return "Hello with Spring Boot";
+        return "Address Lookup API";
     }
 
     public static void main(String[] args) {
