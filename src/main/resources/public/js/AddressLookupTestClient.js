@@ -37,6 +37,11 @@
 		
 		function lookup() {
 			
+			if (vm.search == '' && vm.lookupType.name!='rgeo') {
+				alert('Required field: Eircode/Postcode or address fragment');
+				return;
+			}
+			
 			var url = buildUrl();
 			
 			$http({
