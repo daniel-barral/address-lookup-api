@@ -89,6 +89,10 @@
 				url += '&page=' + vm.page;
 			}
 			
+			if (vm.addTags) {
+				url += '&addtags=' + vm.addTags;
+			}
+			
 			return url;
 		}
 		
