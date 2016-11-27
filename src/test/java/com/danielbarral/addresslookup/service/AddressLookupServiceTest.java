@@ -2,7 +2,10 @@ package com.danielbarral.addresslookup.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -39,10 +42,25 @@ public class AddressLookupServiceTest {
 	private Random random = new Random();
 	
 	
+	private void clearCache() {
+		try (Jedis jedis = jedisPool.getResource()) {
+			Set<String> keys = jedis.keys("*");
+			for (String key : keys) {
+			    jedis.del(key);
+			}
+		}
+	}
+	
 	@Test
     public void testExampleResult() {
 		
-    	String json = addressLookupService.addressLookup(postcoderApiBaseUrl, "PCW45-12345-12345-1234X", "/address/ie/D02X285?lines=3&format=json");
+		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
+		parameterMap.put("lines", new String[]{"3"});
+		parameterMap.put("format", new String[]{"json"});
+		
+		clearCache(); //ensure result won't come from cache
+		
+    	String json = addressLookupService.addressLookup(postcoderApiBaseUrl, "PCW45-12345-12345-1234X", "address", "ie", "D02X285", null, null, parameterMap);
     	
     	JSONArray addresses = new JSONArray(json);
     	
@@ -61,19 +79,32 @@ public class AddressLookupServiceTest {
 			
 			String baseUrl = postcoderApiBaseUrl;
 			String key = "PCW45-12345-12345-1234X";
-			String queryString = "/address/ie/D02X285?lines=3&format=json";
+			String lookupType = "address";
+			String countryCode = "ie";
+			String queryString = "D02X285";
 			
-			String url = new UrlBuilder().baseUrl(baseUrl).apiKey(key).queryString(queryString).build();
+			Map<String, String[]> parameterMap = new HashMap<String, String[]>();
+			parameterMap.put("lines", new String[]{"3"});
+			parameterMap.put("format", new String[]{"json"});
+			
+			String cacheKey = new UrlBuilder()
+					.baseUrl(baseUrl)
+					.apiKey(key)
+					.lookupType(lookupType)
+					.countryCode(countryCode)
+					.queryString(queryString)
+					.parameterMap(parameterMap)
+					.buildCacheKey();
 			
 			String dummyJson = "dummy-json" + random.nextInt();
 			
-			jedis.set(url, dummyJson); //put a "dummy-json" in the cache
+			jedis.set(cacheKey, dummyJson); //put a "dummy-json" in the cache
 			
-			String json = addressLookupService.addressLookup(baseUrl, key, queryString);
+			String json = addressLookupService.addressLookup(baseUrl, key, lookupType, countryCode, queryString, null, null, parameterMap);
 			
 			assertEquals(dummyJson, json); //check if result came from the cache
 			
-			jedis.del(url); //remove the dummy to avoid trash
+			jedis.del(cacheKey); //remove the dummy to avoid trash
 			
 		}
 		

@@ -1,5 +1,7 @@
 package com.danielbarral.addresslookup.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -22,25 +24,37 @@ public class AddressLookupService {
 	
 	private RestTemplate restTemplate = new RestTemplate();
 
-	public String addressLookup(String baseUrl, String key, String queryString) {
+	public String addressLookup(String baseUrl, String key, String lookupType, String countryCode, 
+			String queryString, String latitude, String longitude, Map<String, String[]> parameterMap) {
 
-		String url = new UrlBuilder().baseUrl(baseUrl).apiKey(key).queryString(queryString).build();
+		UrlBuilder urlBuilder = new UrlBuilder()
+				.baseUrl(baseUrl)
+				.apiKey(key)
+				.lookupType(lookupType)
+				.countryCode(countryCode)
+				.queryString(queryString)
+				.latitude(latitude)
+				.longitude(longitude)
+				.parameterMap(parameterMap);
 		
-		logger.debug("Address lookup request URL: {}", url);
+		String fullUrl = urlBuilder.buildFullUrl();
+		String cacheKey = urlBuilder.buildCacheKey();
+		
+		logger.debug("Address lookup request URL: {}", fullUrl);
 
 		try (Jedis jedis = jedisPool.getResource()) {
 
-			String jsonCache = jedis.get(url);
+			String jsonCache = jedis.get(cacheKey);
 			if (jsonCache != null) { //cache hit
-				logger.debug("Cache hit for URL: {}", url);
+				logger.debug("Cache hit for URL: {}", fullUrl);
 				return jsonCache;
 			}
 			
-			logger.debug("Cache miss for URL: {}", url);
+			logger.debug("Cache miss for URL: {}", fullUrl);
 			
-			String json = restTemplate.getForObject(url, String.class);
+			String json = restTemplate.getForObject(fullUrl, String.class);
 
-			jedis.set(url, json);
+			jedis.set(cacheKey, json);
 
 			return json;
 		}

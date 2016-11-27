@@ -1,12 +1,12 @@
 package com.danielbarral.addresslookup.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.danielbarral.addresslookup.service.AddressLookupService;
@@ -23,35 +23,28 @@ public class AddressLookupController {
 	private AddressLookupService addressLookupService;
 	
 	@RequestMapping("/proxy/{key}/{lookupType}/{countryCode}/{search}")
-    public String addressLookup(
+    public String addressLookup(HttpServletRequest request,
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "lookupType") String lookupType,
     		@PathVariable(value = "countryCode") String countryCode,
-    		@PathVariable(value = "search") String search,
-    		@RequestParam(value = "addtags", required=false) String addtags) {
+    		@PathVariable(value = "search") String search) {
 		
-		logger.debug("Address lookup with key {} lookupType {} coutryCode {} search {} addtags {}", key, lookupType, countryCode, search, addtags);
+		logger.debug("Address lookup with key {} lookupType {} coutryCode {} search {}", key, lookupType, countryCode, search);
 		
-		String remainingUrl = "/" + lookupType + "/" + countryCode + "/" + search + "?format=json";
-		if (addtags != null) {
-			remainingUrl += "&addtags=" + addtags;
-		}
-		String json = addressLookupService.addressLookup(apiBaseUrl, key, remainingUrl);
+		String json = addressLookupService.addressLookup(apiBaseUrl, key, lookupType, countryCode, search, null, null, request.getParameterMap());
 		
         return json;
     }
 	
 	@RequestMapping("/proxy/{key}/rgeo/ie/{latitude}/{longitude}")
-    public String reverseGeocode(
+    public String reverseGeocode(HttpServletRequest request,
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "latitude") String latitude,
-    		@PathVariable(value = "longitude") String longitude,
-    		@RequestParam(value = "distance", required=true) String distance,
-    		@RequestParam(value = "addtags", required=false) String addtags) {
+    		@PathVariable(value = "longitude") String longitude) {
 		
-		logger.debug("Reverse geocode with key {} latitude {} longitude {} distance {} addtags {}", key, latitude, longitude, distance, addtags);
+		logger.debug("Reverse geocode with key {} latitude {} longitude {}", key, latitude, longitude);
 		
-		String json = addressLookupService.addressLookup(apiBaseUrl, key, "/rgeo/ie/" + latitude + "/" + longitude + "?distance=" + distance);
+		String json = addressLookupService.addressLookup(apiBaseUrl, key, "rgeo", "ie", null, latitude, longitude, request.getParameterMap());
 		
         return json;
     }

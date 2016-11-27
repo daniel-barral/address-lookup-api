@@ -1,10 +1,8 @@
 package com.danielbarral.addresslookup;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
 
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -35,11 +33,6 @@ public class BeanConfig {
 	@Bean
 	public JedisPool jedisPool() {
 		return new JedisPool(new JedisPoolConfig(), jedisServer, jedisPort);
-	}
-	
-	@Bean
-	public TestRestTemplate testRestTemplate() {
-	    return new TestRestTemplate();
 	}
 
 }
