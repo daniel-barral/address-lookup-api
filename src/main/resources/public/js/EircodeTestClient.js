@@ -8,6 +8,7 @@
 		
 		vm.apiKey = 'PCW45-12345-12345-1234X';
 		vm.search = '';
+		vm.what3words = false;
 		
 		vm.lookupTypes = [
 	          {name:'address'},
@@ -58,8 +59,14 @@
 			
 			if (vm.lookupType.name=='rgeo') {
 				url += vm.latitude + '/' + vm.longitude + '?distance=' + vm.distance;
+				url += '&format=json';
 			} else {
 				url += vm.search;
+				url += '?format=json';
+			}
+			
+			if (vm.what3words) {
+				url += '&addtags=w3w';
 			}
 			
 			return url;

@@ -27,11 +27,16 @@ public class AddressLookupController {
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "lookupType") String lookupType,
     		@PathVariable(value = "countryCode") String countryCode,
-    		@PathVariable(value = "search") String search) {
+    		@PathVariable(value = "search") String search,
+    		@RequestParam(value = "addtags", required=false) String addtags) {
 		
-		logger.debug("Address lookup with key {} lookupType {} coutryCode {} search {}", key, lookupType, countryCode, search);
+		logger.debug("Address lookup with key {} lookupType {} coutryCode {} search {} addtags {}", key, lookupType, countryCode, search, addtags);
 		
-		String json = addressLookupService.addressLookup(apiBaseUrl, key, "/" + lookupType + "/" + countryCode + "/" + search);
+		String remainingUrl = "/" + lookupType + "/" + countryCode + "/" + search + "?format=json";
+		if (addtags != null) {
+			remainingUrl += "&addtags=" + addtags;
+		}
+		String json = addressLookupService.addressLookup(apiBaseUrl, key, remainingUrl);
 		
         return json;
     }
@@ -41,9 +46,10 @@ public class AddressLookupController {
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "latitude") String latitude,
     		@PathVariable(value = "longitude") String longitude,
-    		@RequestParam(value="distance", required=true) String distance) {
+    		@RequestParam(value = "distance", required=true) String distance,
+    		@RequestParam(value = "addtags", required=false) String addtags) {
 		
-		logger.debug("Reverse geocode with key {} latitude {} longitude {} distance {}", key, latitude, longitude, distance);
+		logger.debug("Reverse geocode with key {} latitude {} longitude {} distance {} addtags {}", key, latitude, longitude, distance, addtags);
 		
 		String json = addressLookupService.addressLookup(apiBaseUrl, key, "/rgeo/ie/" + latitude + "/" + longitude + "?distance=" + distance);
 		

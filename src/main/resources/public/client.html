@@ -27,7 +27,7 @@
 				<label>Country:</label>
 				<select ng-model="vm.country" ng-options="country.code for country in vm.countries"></select>
 			</p>
-			<p ng-show="vm.country.code=='ie'">
+			<p>
 				<label>Lookup type:</label>
 				<select ng-model="vm.lookupType" ng-options="lookupType.name for lookupType in vm.lookupTypes"></select>
 			</p>
@@ -46,6 +46,10 @@
 			<p ng-show="vm.lookupType.name=='rgeo'">
 				<label>Distance:</label>
 				<input type="text" ng-model="vm.distance">
+			</p>
+			<p>
+				<label>What3words:</label>
+				<input type="checkbox" ng-model="vm.what3words">
 			</p>
 			
 			<button type="button" ng-click="vm.lookup()">Search</button>
