@@ -31,6 +31,8 @@ public class AddressLookupController {
 		
 		logger.debug("Address lookup with key {} lookupType {} coutryCode {} search {}", key, lookupType, countryCode, search);
 		
+		search = search.toLowerCase(); //Convert to lowercase to avoid unnecessary cache miss
+		
 		String json = addressLookupService.addressLookup(apiBaseUrl, key, lookupType, countryCode, search, null, null, request.getParameterMap());
 		
         return json;

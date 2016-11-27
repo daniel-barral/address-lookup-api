@@ -92,15 +92,30 @@ public class AddressLookupControllerTest {
 	
 	
 	@Test
-	public void swapParameterOrderTest() throws Exception {
+	public void swapParameterOrderCacheTest() throws Exception {
+		
+		//Two URL identical except for parameter order
+		testIfSecondUrlCameFromCache(
+				"address/ie/d02x285?format=json&lines=3",
+				"address/ie/d02x285?lines=3&format=json");
+		
+	}
+	
+	@Test
+	public void mixedCasePoscodeCacheTest() throws Exception {
+		
+		//Two URL identical except for uppercase/lowercase postcodes
+		testIfSecondUrlCameFromCache(
+				"address/ie/d02x285?format=json",
+				"address/ie/D02X285?format=json");
+		
+	}
+	
+	private void testIfSecondUrlCameFromCache(String urlFragment1, String urlFragment2) throws Exception {
 		
 		try (Jedis jedis = jedisPool.getResource()) {
 			
 			clearCache();
-			
-			//Two URL identical except for parameter order
-			String urlFragment1 = "address/ie/D02X285?format=json&lines=3";
-			String urlFragment2 = "address/ie/D02X285?lines=3&format=json";
 			
 			String dummyJson = "dummy-json" + random.nextInt();
 			
