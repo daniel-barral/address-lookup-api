@@ -1,4 +1,4 @@
-package com.danielbarral.addresslookup.service;
+package com.danielbarral.addresslookup.controller;
 
 import static org.junit.Assert.assertEquals;
 
