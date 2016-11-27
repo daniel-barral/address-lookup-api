@@ -58,15 +58,35 @@
 			var url = '/proxy/' + vm.apiKey + '/' + vm.lookupType.name + '/' + vm.country.code + '/';
 			
 			if (vm.lookupType.name=='rgeo') {
-				url += vm.latitude + '/' + vm.longitude + '?distance=' + vm.distance;
-				url += '&format=json';
+				url += vm.latitude + '/' + vm.longitude;
 			} else {
 				url += vm.search;
-				url += '?format=json';
+			}
+			
+			url += '?format=json';
+			
+			if (vm.lookupType.name=='rgeo') {
+				url += '&distance=' + vm.distance;
 			}
 			
 			if (vm.what3words) {
 				url += '&addtags=w3w';
+			}
+			
+			if (vm.lines) {
+				url += '&lines=' + vm.lines;
+			}
+			
+			if (vm.include) {
+				url += '&include=' + vm.include;
+			}
+			
+			if (vm.exclude) {
+				url += '&exclude=' + vm.exclude;
+			}
+			
+			if (vm.page) {
+				url += '&page=' + vm.page;
 			}
 			
 			return url;
