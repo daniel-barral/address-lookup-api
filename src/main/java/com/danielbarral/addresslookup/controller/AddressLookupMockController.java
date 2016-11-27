@@ -30,7 +30,7 @@ public class AddressLookupMockController {
 		address.setStreet("Mock Street");
 		address.setPosttown("Mock Posttown");
 		address.setCounty("Mock County");
-		address.setPostcode("Mock Postcode");
+		address.setPostcode("Mock Postcode " + search);
 		
 		addressList.add(address);
 		
@@ -42,7 +42,7 @@ public class AddressLookupMockController {
 		address2.setStreet("Mock002 Street");
 		address2.setPosttown("Mock002 Posttown");
 		address2.setCounty("Mock002 County");
-		address2.setPostcode("Mock002 Postcode");
+		address2.setPostcode("Mock002 Postcode " + search);
 		
 		addressList.add(address2);
         
@@ -139,6 +139,40 @@ public class AddressLookupMockController {
 		address2.setPosttown("Mock002 Reverse geocode Posttown");
 		address2.setCounty("Mock002 Reverse geocode County");
 		address2.setPostcode("Mock002 Reverse geocode Postcode");
+		
+		addressList.add(address2);
+        
+		return addressList;
+    }
+	
+	@RequestMapping("/mock/{key}/address/uk/{search}")
+    public List<Address> ukAddressLookup(
+    		@PathVariable(value = "key") String key,
+    		@PathVariable(value = "search") String search) {
+		
+		List<Address> addressList = new ArrayList<Address>();
+		
+		Address address = new Address();
+		address.setAddressline1("Mock UK Addressline1");
+		address.setAddressline2("Mock UK Addressline2");
+		address.setSummaryline("Mock UK Summaryline");
+		address.setOrganisation("Mock UK Organisation");
+		address.setStreet("Mock UK Street");
+		address.setPosttown("Mock UK Posttown");
+		address.setCounty("Mock UK County");
+		address.setPostcode("Mock UK Postcode " + search);
+		
+		addressList.add(address);
+		
+		Address address2 = new Address();
+		address2.setAddressline1("Mock002 UK Addressline1");
+		address2.setAddressline2("Mock002 UK Addressline2");
+		address2.setSummaryline("Mock002 UK Summaryline");
+		address2.setOrganisation("Mock002 UK Organisation");
+		address2.setStreet("Mock002 UK Street");
+		address2.setPosttown("Mock002 UK Posttown");
+		address2.setCounty("Mock002 UK County");
+		address2.setPostcode("Mock002 UK Postcode " + search);
 		
 		addressList.add(address2);
         
