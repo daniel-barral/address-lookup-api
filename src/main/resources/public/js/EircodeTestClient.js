@@ -54,7 +54,7 @@
 		}
 		
 		function buildUrl() {
-			var url = '/cache/' + vm.apiKey + '/' + vm.lookupType.name + '/' + vm.country.code + '/';
+			var url = '/proxy/' + vm.apiKey + '/' + vm.lookupType.name + '/' + vm.country.code + '/';
 			
 			if (vm.lookupType.name=='rgeo') {
 				url += vm.latitude + '/' + vm.longitude + '?distance=' + vm.distance;

@@ -11,7 +11,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 @Service
-public class EircodeService {
+public class AddressLookupService {
 
 	@Inject
 	private JedisPool jedisPool;

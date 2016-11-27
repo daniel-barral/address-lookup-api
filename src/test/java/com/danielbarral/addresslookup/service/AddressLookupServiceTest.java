@@ -22,7 +22,7 @@ import redis.clients.jedis.JedisPool;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class EircodeServiceTest {
+public class AddressLookupServiceTest {
 	
 	@Value("${postcoderApiBaseUrl}")
 	private String postcoderApiBaseUrl;
@@ -31,7 +31,7 @@ public class EircodeServiceTest {
 	private String mockApiBaseUrl;
 	
 	@Inject
-	private EircodeService eircodeService;
+	private AddressLookupService addressLookupService;
 	
 	@Inject
 	private JedisPool jedisPool;
@@ -42,7 +42,7 @@ public class EircodeServiceTest {
 	@Test
     public void testExampleResult() {
 		
-    	String json = eircodeService.addressLookup(postcoderApiBaseUrl, "PCW45-12345-12345-1234X", "/address/ie/D02X285?lines=3&format=json");
+    	String json = addressLookupService.addressLookup(postcoderApiBaseUrl, "PCW45-12345-12345-1234X", "/address/ie/D02X285?lines=3&format=json");
     	
     	JSONArray addresses = new JSONArray(json);
     	
@@ -69,7 +69,7 @@ public class EircodeServiceTest {
 			
 			jedis.set(url, dummyJson); //put a "dummy-json" in the cache
 			
-			String json = eircodeService.addressLookup(baseUrl, key, queryString);
+			String json = addressLookupService.addressLookup(baseUrl, key, queryString);
 			
 			assertEquals(dummyJson, json); //check if result came from the cache
 			

@@ -13,7 +13,7 @@ import com.danielbarral.addresslookup.model.AddressGeo;
 import com.danielbarral.addresslookup.model.Coordinate;
 
 @RestController
-public class EircodeMockController {
+public class AddressLookupMockController {
 	
 	@RequestMapping("/mock/{key}/address/ie/{search}")
     public List<Address> irishAddressLookup(
