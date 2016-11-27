@@ -192,5 +192,70 @@ public class AddressLookupMockController {
         
 		return addressList;
     }
+	
+	
+	@RequestMapping("/mock/{key}/addressgeo/uk/{search}")
+    public List<AddressGeo> ukAddressAndCoordinateLookup(
+    		@PathVariable(value = "key") String key,
+    		@PathVariable(value = "search") String search) {
+		
+		logger.debug("Mock irishAddressAndCoordinateLookup");
+		
+		List<AddressGeo> addressList = new ArrayList<AddressGeo>();
+		
+		AddressGeo address = new AddressGeo();
+		address.setAddressline1("Mock UK Addressline1");
+		address.setAddressline2("Mock UK Addressline2");
+		address.setSummaryline("Mock UK Summaryline");
+		address.setOrganisation("Mock UK Organisation");
+		address.setStreet("Mock UK Street");
+		address.setPosttown("Mock UK Posttown");
+		address.setCounty("Mock UK County");
+		address.setPostcode("Mock UK Postcode");
+		address.setLatitude("53.332067");
+		address.setLongitude("-6.255492");
+		
+		addressList.add(address);
+		
+		AddressGeo address2 = new AddressGeo();
+		address2.setAddressline1("Mock002 UK Addressline1");
+		address2.setAddressline2("Mock002 UK Addressline2");
+		address2.setSummaryline("Mock002 UK Summaryline");
+		address2.setOrganisation("Mock002 UK Organisation");
+		address2.setStreet("Mock002 UK Street");
+		address2.setPosttown("Mock002 UK Posttown");
+		address2.setCounty("Mock002 UK County");
+		address2.setPostcode("Mock002 UK Postcode");
+		address2.setLatitude("12.345678");
+		address2.setLongitude("-1.234567");
+		
+		addressList.add(address2);
+        
+		return addressList;
+    }
+	
+	@RequestMapping("/mock/{key}/position/uk/{search}")
+    public List<Coordinate> ukCoordinateLookup(
+    		@PathVariable(value = "key") String key,
+    		@PathVariable(value = "search") String search) {
+		
+		logger.debug("Mock irishCoordinateLookup");
+		
+		List<Coordinate> coordinateList = new ArrayList<Coordinate>();
+		
+		Coordinate coordinate = new Coordinate();
+		coordinate.setLatitude("53.332067");
+		coordinate.setLongitude("-6.255492");
+		
+		coordinateList.add(coordinate);
+		
+		Coordinate coordinate2 = new Coordinate();
+		coordinate2.setLatitude("12.345678");
+		coordinate2.setLongitude("-1.234567");
+		
+		coordinateList.add(coordinate2);
+        
+		return coordinateList;
+    }
 
 }
