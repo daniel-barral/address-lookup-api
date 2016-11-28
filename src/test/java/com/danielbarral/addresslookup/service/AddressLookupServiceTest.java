@@ -52,7 +52,7 @@ public class AddressLookupServiceTest {
 	}
 	
 	@Test
-    public void testExampleResult() {
+	public void testExampleResult() {
 		
 		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
 		parameterMap.put("lines", new String[]{"3"});
@@ -70,10 +70,10 @@ public class AddressLookupServiceTest {
     	assertEquals("Dublin", addresses.getJSONObject(0).get("county"));
     	assertEquals("Adelaide Road", addresses.getJSONObject(0).get("street"));
 		
-    }
+	}
 	
 	@Test
-    public void testCachedResult() {
+	public void testCachedResult() {
 		
 		try (Jedis jedis = jedisPool.getResource()) {
 			
@@ -108,6 +108,6 @@ public class AddressLookupServiceTest {
 			
 		}
 		
-    }
+	}
 
 }

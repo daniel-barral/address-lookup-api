@@ -39,7 +39,7 @@ public class AddressLookupControllerTest {
 	private TestRestTemplate restTemplate;
 	
 	@Inject
-    private MockMvc mvc;
+	private MockMvc mvc;
 	
 	@Inject
 	private JedisPool jedisPool;

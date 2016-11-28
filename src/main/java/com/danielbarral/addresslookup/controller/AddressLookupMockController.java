@@ -20,7 +20,7 @@ public class AddressLookupMockController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping("/mock/{key}/address/ie/{search}")
-    public List<Address> irishAddressLookup(
+	public List<Address> irishAddressLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
@@ -53,10 +53,10 @@ public class AddressLookupMockController {
 		addressList.add(address2);
         
 		return addressList;
-    }
+	}
 	
 	@RequestMapping("/mock/{key}/addressgeo/ie/{search}")
-    public List<AddressGeo> irishAddressAndCoordinateLookup(
+	public List<AddressGeo> irishAddressAndCoordinateLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
@@ -93,10 +93,10 @@ public class AddressLookupMockController {
 		addressList.add(address2);
         
 		return addressList;
-    }
+	}
 	
 	@RequestMapping("/mock/{key}/position/ie/{search}")
-    public List<Coordinate> irishCoordinateLookup(
+	public List<Coordinate> irishCoordinateLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
@@ -117,10 +117,10 @@ public class AddressLookupMockController {
 		coordinateList.add(coordinate2);
         
 		return coordinateList;
-    }
+	}
 	
 	@RequestMapping("/mock/{key}/rgeo/ie/{latitude}/{longitude}")
-    public List<Address> reverseGeocode(
+	public List<Address> reverseGeocode(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "latitude") String latitude,
     		@PathVariable(value = "latitude") String longitude,
@@ -155,10 +155,10 @@ public class AddressLookupMockController {
 		addressList.add(address2);
         
 		return addressList;
-    }
+	}
 	
 	@RequestMapping("/mock/{key}/address/uk/{search}")
-    public List<Address> ukAddressLookup(
+	public List<Address> ukAddressLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
@@ -191,11 +191,11 @@ public class AddressLookupMockController {
 		addressList.add(address2);
         
 		return addressList;
-    }
+	}
 	
 	
 	@RequestMapping("/mock/{key}/addressgeo/uk/{search}")
-    public List<AddressGeo> ukAddressAndCoordinateLookup(
+	public List<AddressGeo> ukAddressAndCoordinateLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
@@ -232,10 +232,10 @@ public class AddressLookupMockController {
 		addressList.add(address2);
         
 		return addressList;
-    }
+	}
 	
 	@RequestMapping("/mock/{key}/position/uk/{search}")
-    public List<Coordinate> ukCoordinateLookup(
+	public List<Coordinate> ukCoordinateLookup(
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "search") String search) {
 		
@@ -256,6 +256,6 @@ public class AddressLookupMockController {
 		coordinateList.add(coordinate2);
         
 		return coordinateList;
-    }
+	}
 
 }

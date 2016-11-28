@@ -10,7 +10,7 @@ import org.junit.Test;
 public class UrlBuilderTest {
 	
 	@Test
-    public void testExampleUrl() {
+	public void testExampleUrl() {
 		
 		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
 		parameterMap.put("lines", new String[]{"3"});

@@ -23,7 +23,7 @@ public class AddressLookupController {
 	private AddressLookupService addressLookupService;
 	
 	@RequestMapping("/proxy/{key}/{lookupType}/{countryCode}/{search}")
-    public String addressLookup(HttpServletRequest request,
+	public String addressLookup(HttpServletRequest request,
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "lookupType") String lookupType,
     		@PathVariable(value = "countryCode") String countryCode,
@@ -36,10 +36,10 @@ public class AddressLookupController {
 		String json = addressLookupService.addressLookup(apiBaseUrl, key, lookupType, countryCode, search, null, null, request.getParameterMap());
 		
         return json;
-    }
+	}
 	
 	@RequestMapping("/proxy/{key}/rgeo/ie/{latitude}/{longitude}")
-    public String reverseGeocode(HttpServletRequest request,
+	public String reverseGeocode(HttpServletRequest request,
     		@PathVariable(value = "key") String key,
     		@PathVariable(value = "latitude") String latitude,
     		@PathVariable(value = "longitude") String longitude) {
@@ -49,6 +49,6 @@ public class AddressLookupController {
 		String json = addressLookupService.addressLookup(apiBaseUrl, key, "rgeo", "ie", null, latitude, longitude, request.getParameterMap());
 		
         return json;
-    }
+	}
 
 }
