@@ -3,3 +3,6 @@ sudo: false
 script: mvn test
 jdk:
   - oraclejdk8
+services:
+  - redis-server
+  
