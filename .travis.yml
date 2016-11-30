@@ -1,6 +1,8 @@
 language: java
 sudo: false
-script: mvn test
+script:
+  - mvn test
+  - "mvn cobertura:cobertura"
 jdk:
   - oraclejdk8
 services:
