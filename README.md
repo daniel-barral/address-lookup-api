@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/daniel-barral/address-lookup-api.svg?branch=master)](https://travis-ci.org/daniel-barral/address-lookup-api)
+[![codecov](https://codecov.io/gh/daniel-barral/address-lookup-api/branch/master/graph/badge.svg)](https://codecov.io/gh/daniel-barral/address-lookup-api)
 
 # Address Lookup API
 
