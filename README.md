@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/daniel-barral/address-lookup-api.svg?branch=master)](https://travis-ci.org/daniel-barral/address-lookup-api)
+
 # Address Lookup API
 
 Docker API service to query for addresses based on their Eircode/Postcode or address fragment.
