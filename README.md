@@ -13,15 +13,21 @@ This project uses Java 8, Maven, Spring Boot, Redis and Docker.
 
 - Build Docker image:
 
+```
 mvn package docker:build
+```
 
 - Start Redis with persistent storage:
 
+```
 $ docker run --name some-redis -d redis redis-server --appendonly yes
+```
 
 - Start app:
 
+```
 $ docker run --name some-app --link some-redis:redis -d -p 8080:8080 -t danielbarral/addresslookup
+```
 
 ## Testing client
 
